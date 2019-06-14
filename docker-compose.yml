@@ -1,0 +1,27 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: dockerfile.dev
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./api:/api
+      - /api/node_modules
+  db:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+  ui:
+    build:
+      context: ./ui
+      dockerfile: dockerfile.dev
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./ui:/ui
+      - /ui/node_modules
+
+
